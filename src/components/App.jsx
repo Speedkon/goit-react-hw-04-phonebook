@@ -25,9 +25,7 @@ export const App = () => {
       Report.warning(`${newContact.name} is already in contacts.`);
     } else {
       setContacts(prevContacts => {
-        return {
-          contacts: [...prevContacts, { ...newContact, id: newID }]
-        }
+        return [...prevContacts, { ...newContact, id: newID }]
       })
     }
   };
@@ -56,15 +54,7 @@ export const App = () => {
     setContacts(updateContacts)
   };
 
-  const filterContacts = () => {
-    if (filter === "") {
-      return contacts;
-    }
-
-    return contacts.filter(
-      contact => contact.name.toLowerCase().includes(filter.toLowerCase())
-    );
-  } 
+  const filterContacts = contacts.filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase()))
 
 
     return (
@@ -74,7 +64,7 @@ export const App = () => {
 
         <Title>Contacts</Title>
         <Filter onFilter={onFilter}/>
-        <ContactList allContacts={filterContacts()}  onDelete={deleteContact} />
+        <ContactList allContacts={filterContacts}  onDelete={deleteContact} />
       </Container>
     )
 
